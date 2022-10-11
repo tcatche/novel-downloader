@@ -20,6 +20,7 @@ export interface saveType {
   epub: boolean;
   txt: boolean;
   raw: false | { ext: string };
+  json: boolean;
 }
 
 export class Book {
@@ -27,6 +28,7 @@ export class Book {
     epub: true,
     txt: true,
     raw: false,
+    json: true,
   };
   public readonly bookname: string;
   public readonly author: string;

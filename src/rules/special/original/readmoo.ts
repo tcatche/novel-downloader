@@ -12,7 +12,7 @@ import {deepcopy} from "../../../lib/misc";
 export class Readmoo extends BaseRuleClass {
     public constructor() {
         super();
-        this.saveType = {txt: false, epub: false, raw: {ext: "epub"}};
+        this.saveType = {txt: false, epub: false, raw: {ext: "epub"}, json: false};
         this.attachmentMode = "TM";
     }
 

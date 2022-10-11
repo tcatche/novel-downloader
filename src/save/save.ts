@@ -8,12 +8,14 @@ import { SaveOptions } from "./options";
 import { EPUB } from "./epub";
 import { TXT } from "./txt";
 import { Raw } from "./raw";
+import { Json } from "./json";
 
 export class SaveBook {
   private saveType: saveType;
   private txt: TXT;
   private epub: EPUB;
   private raw!: Raw;
+  private json: Json;
 
   public constructor(book: Book, streamZip: boolean, options?: SaveOptions) {
     const _options = {};
@@ -31,6 +33,7 @@ export class SaveBook {
     if (this.saveType.raw instanceof Object) {
       this.raw = new Raw(book);
     }
+    this.json = new Json(book, _options);
   }
 
   private static saveLog() {
@@ -72,6 +75,9 @@ export class SaveBook {
     if (this.saveType.raw instanceof Object) {
       await this.saveRaw();
     }
+    if (this.saveType.json) {
+      await this.saveJSON()
+    }
   }
 
   private saveTxt() {
@@ -84,5 +90,9 @@ export class SaveBook {
 
   private async saveRaw() {
     await this.raw.saveRaw();
+  }
+
+  private async saveJSON() {
+    await this.json.saveJSON();
   }
 }
